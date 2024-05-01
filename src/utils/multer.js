@@ -1,6 +1,6 @@
 import multer from "multer";
 import multerS3 from "multer-s3";
-import droptS3Client from "../s3/index.js";
+import droptS3Client from "./s3.js";
 import "dotenv/config";
 
 const storage = multerS3({
@@ -10,7 +10,13 @@ const storage = multerS3({
     cb(null, {fieldName: file.fieldname});
   },
   key: function (req, file, cb) {
-    cb(null, Date.now().toString())
+    const originalNameArray  = file.originalname.split('.');
+    if(originalNameArray < 2){
+      cb(null, originalNameArray[0] + '-' + Date.now().toString());
+    }
+    else{
+      cb(null, originalNameArray[0] + '-' + Date.now().toString()  + '.' + originalNameArray.at(-1));
+    }
   }
 })
 

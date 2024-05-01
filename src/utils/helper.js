@@ -22,5 +22,5 @@ export function getDateString() {
 }
 
 export function generateAlias() {
-  return generate({ exactly: 1, wordsPerString: 2, maxLength: 3 ,separator: '-' });
+  return generate({ exactly: 1, wordsPerString: 2, maxLength: 3 ,separator: '-' })[0];
 }

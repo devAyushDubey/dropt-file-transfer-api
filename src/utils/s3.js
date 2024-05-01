@@ -9,4 +9,8 @@ const droptS3Client = new S3Client({
   },
 });
 
+export function disconnectS3Client() {
+  droptS3Client.destroy();
+}
+
 export default droptS3Client;
